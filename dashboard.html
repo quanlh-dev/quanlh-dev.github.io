@@ -9,70 +9,72 @@
 </head>
 
 <body>
+    <div class="dashboard">
+        <!-- ===== TIÊU ĐỀ TRANG ===== -->
+        <div class="banner">
+            <div class="flag-wave"></div>
 
-    <!-- ===== TIÊU ĐỀ TRANG ===== -->
-    <div class="banner">
-        <div class="flag-wave"></div>
+            <div class="banner-content">
+                <h1>LỮ ĐOÀN 204</h1>
+                <h2>HỆ THỐNG BỔ TRỢ GIÁO DỤC CHÍNH TRỊ – PHÁP LUẬT</h2>
+                <p>Ứng dụng chuyển đổi số trong đơn vị</p>
+            </div>
+        </div>
 
-        <div class="banner-content">
-            <h1>LỮ ĐOÀN 204</h1>
-            <h2>HỆ THỐNG BỔ TRỢ GIÁO DỤC CHÍNH TRỊ – PHÁP LUẬT</h2>
-            <p>Ứng dụng chuyển đổi số trong đơn vị</p>
+        <!-- ===== THANH CHÀO MỪNG ===== -->
+        <div class="welcome-bar">
+            <div class="welcome-text">
+                Chào mừng các đồng chí đến với nội dung bổ trợ giáo dục pháp luật!
+                – Chúc các đồng chí hoàn thành xuất sắc nhiệm vụ!
+            </div>
+        </div>
+
+        <!-- ===== MENU 4 CHỨC NĂNG ===== -->
+        <div class="grid">
+
+            <!-- THƯ VIỆN VĂN BẢN -->
+            <div class="menu-card red" onclick="openLibrary()">
+                <div class="icon">📚</div>
+                <h3>THƯ VIỆN VĂN BẢN</h3>
+                <p>
+                    Hệ thống luật, chỉ thị, thông tư,<br>
+                    quy định của Đảng và Nhà nước
+                </p>
+            </div>
+
+            <!-- THƯ VIỆN BÀI GIẢNG -->
+            <div class="menu-card blue" onclick="openLessons()">
+                <div class="icon">🎓</div>
+                <h3>THƯ VIỆN BÀI GIẢNG</h3>
+                <p>
+                    Nội dung giáo dục chính trị,<br>
+                    giáo dục pháp luật theo chương trình
+                </p>
+            </div>
+
+            <!-- TRỢ LÝ AI -->
+            <div class="menu-card gray" onclick="openAIAssistant()">
+                <div class="icon">🤖</div>
+                <h3>TRỢ LÝ AI</h3>
+                <p>
+                    Hỏi – đáp nhanh các quy định<br>
+                    pháp luật, điều lệnh, điều lệ
+                </p>
+            </div>
+
+            <!-- TRẮC NGHIỆM -->
+            <div class="menu-card green" onclick="openQuiz()">
+                <div class="icon">📝</div>
+                <h3>TRẮC NGHIỆM</h3>
+                <p>
+                    Kiểm tra, đánh giá nhận thức<br>
+                    chính trị, pháp luật của bộ đội
+                </p>
+            </div>
+
         </div>
     </div>
 
-    <!-- ===== THANH CHÀO MỪNG ===== -->
-    <div class="welcome-bar">
-        <div class="welcome-text">
-            Chào mừng các đồng chí đến với nội dung bổ trợ giáo dục pháp luật!
-            – Chúc các đồng chí hoàn thành xuất sắc nhiệm vụ!
-        </div>
-    </div>
-
-    <!-- ===== MENU 4 CHỨC NĂNG ===== -->
-    <div class="grid">
-
-        <!-- THƯ VIỆN VĂN BẢN -->
-        <div class="menu-card red" onclick="openLibrary()">
-            <div class="icon">📚</div>
-            <h3>THƯ VIỆN VĂN BẢN</h3>
-            <p>
-                Hệ thống luật, chỉ thị, thông tư,<br>
-                quy định của Đảng và Nhà nước
-            </p>
-        </div>
-
-        <!-- THƯ VIỆN BÀI GIẢNG -->
-        <div class="menu-card blue" onclick="openLessons()">
-            <div class="icon">🎓</div>
-            <h3>THƯ VIỆN BÀI GIẢNG</h3>
-            <p>
-                Nội dung giáo dục chính trị,<br>
-                giáo dục pháp luật theo chương trình
-            </p>
-        </div>
-
-        <!-- TRỢ LÝ AI -->
-        <div class="menu-card gray" onclick="openAIAssistant()">
-            <div class="icon">🤖</div>
-            <h3>TRỢ LÝ AI</h3>
-            <p>
-                Hỏi – đáp nhanh các quy định<br>
-                pháp luật, điều lệnh, điều lệ
-            </p>
-        </div>
-
-        <!-- TRẮC NGHIỆM -->
-        <div class="menu-card green" onclick="openQuiz()">
-            <div class="icon">📝</div>
-            <h3>TRẮC NGHIỆM</h3>
-            <p>
-                Kiểm tra, đánh giá nhận thức<br>
-                chính trị, pháp luật của bộ đội
-            </p>
-        </div>
-
-    </div>
 
     <script src="js/main.js"></script>
 </body>
