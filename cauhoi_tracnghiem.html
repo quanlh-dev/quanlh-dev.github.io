@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trắc nghiệm chính trị – pháp luật</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png.jpg">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #7a0000, #b40000);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-wrapper {
+            background: #ffffff;
+            width: 90%;
+            max-width: 850px;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-header h1 {
+            color: #b40000;
+            margin-bottom: 8px;
+        }
+
+        .quiz-header p {
+            color: #555;
+        }
+
+        .progress {
+            height: 10px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #b40000;
+            transition: width 0.4s;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .answers label {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .answers label:hover {
+            background: #f8f8f8;
+        }
+
+        .answers label.selected {
+            background: #ffe6e6;
+            border-color: #b40000;
+        }
+
+        .answers input {
+            margin-right: 8px;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 25px;
+            background: #b40000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: #666;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-wrapper">
+
+        <a href="dashboard.html" class="back-btn">← Quay lại Dashboard</a>
+
+        <div class="quiz-header">
+            <h1>📝 TRẮC NGHIỆM</h1>
+            <p>Kiểm tra kiến thức chính trị – pháp luật</p>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div id="quiz">
+            <div class="question" id="question"></div>
+            <div class="answers" id="answers"></div>
+        </div>
+
+        <div class="actions">
+            <button id="nextBtn" onclick="nextQuestion()">Câu tiếp theo</button>
+            <button id="restartBtn" onclick="restartQuiz()"
+                style="display: none; margin-left: 10px; background: #666;">Làm lại</button>
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Luật Nghĩa vụ quân sự quy định độ tuổi gọi nhập ngũ là bao nhiêu?",
+                answers: [
+                    "Từ 17 đến 25 tuổi",
+                    "Từ 18 đến 25 tuổi",
+                    "Từ 18 đến 27 tuổi",
+                    "Từ 19 đến 27 tuổi"
+                ],
+                correct: 2
+            },
+            {
+                question: "Hành vi nào bị nghiêm cấm theo Luật An ninh mạng?",
+                answers: [
+                    "Tra cứu thông tin",
+                    "Sử dụng email",
+                    "Đưa thông tin sai sự thật",
+                    "Học tập trực tuyến"
+                ],
+                correct: 2
+            },
+            {
+                question: "Chấp hành pháp luật là trách nhiệm của ai?",
+                answers: [
+                    "Chỉ cán bộ",
+                    "Chỉ chiến sĩ",
+                    "Cán bộ và chiến sĩ",
+                    "Chỉ học viên"
+                ],
+                correct: 2
+            },
+            {
+                question: "Theo Luật Phòng, chống ma túy, ma túy là gì?",
+                answers: [
+                    "Các chất gây nghiện tự nhiên",
+                    "Các chất gây nghiện tổng hợp",
+                    "Các chất gây nghiện và hướng thần bị cấm sử dụng",
+                    "Các loại thuốc chữa bệnh"
+                ],
+                correct: 2
+            },
+            {
+                question: "Hành vi nào sau đây bị nghiêm cấm theo Luật Phòng, chống ma túy?",
+                answers: [
+                    "Tuyên truyền phòng, chống ma túy",
+                    "Phát hiện và tố giác tội phạm ma túy",
+                    "Sử dụng trái phép chất ma túy",
+                    "Tham gia cai nghiện tự nguyện"
+                ],
+                correct: 2
+            },
+            {
+                question: "Trách nhiệm phòng, chống ma túy thuộc về đối tượng nào?",
+                answers: [
+                    "Chỉ cơ quan chức năng",
+                    "Chỉ gia đình người nghiện",
+                    "Cá nhân, gia đình, cơ quan và toàn xã hội",
+                    "Chỉ lực lượng vũ trang"
+                ],
+                correct: 2
+            }
+        ];
+
+        let current = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[current];
+            document.getElementById("question").innerText =
+                "Câu " + (current + 1) + ": " + q.question;
+
+            const answersDiv = document.getElementById("answers");
+            answersDiv.innerHTML = "";
+
+            q.answers.forEach((ans, index) => {
+                const label = document.createElement("label");
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = "answer";
+                input.value = index;
+                input.onchange = function () {
+                    // Xóa class selected từ tất cả labels
+                    document.querySelectorAll('.answers label').forEach(l => {
+                        l.classList.remove('selected');
+                    });
+                    // Thêm class selected cho label được chọn
+                    if (this.checked) {
+                        this.parentElement.classList.add('selected');
+                    }
+                };
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(" " + ans));
+                answersDiv.appendChild(label);
+            });
+
+            // Cập nhật thanh tiến trình
+            const progress = ((current + 1) / questions.length) * 100;
+            document.getElementById("progressBar").style.width = progress + "%";
+
+            // Cập nhật nút
+            const nextBtn = document.getElementById("nextBtn");
+            if (current === questions.length - 1) {
+                nextBtn.innerText = "Hoàn thành";
+            } else {
+                nextBtn.innerText = "Câu tiếp theo";
+            }
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                alert("Vui lòng chọn một đáp án!");
+                return;
+            }
+
+            // Kiểm tra đáp án đúng
+            if (parseInt(selected.value) === questions[current].correct) {
+                score++;
+            }
+
+            current++;
+
+            if (current < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = "";
+
+            const progressBar = document.getElementById("progressBar");
+            progressBar.style.width = "100%";
+
+            const resultDiv = document.getElementById("result");
+            const percentage = Math.round((score / questions.length) * 100);
+            let message = "";
+
+            if (percentage === 100) {
+                message = "🎉 Xuất sắc! Bạn đã trả lời đúng tất cả!";
+            } else if (percentage >= 80) {
+                message = "👍 Tốt lắm! Bạn có kiến thức vững vàng!";
+            } else if (percentage >= 60) {
+                message = "✅ Khá tốt! Hãy tiếp tục cố gắng!";
+            } else {
+                message = "📚 Cần ôn tập thêm! Đừng nản lòng!";
+            }
+
+            resultDiv.innerHTML = `
+        <h2>${message}</h2>
+        <p style="font-size: 24px; margin: 10px 0;">
+            Điểm của bạn: <strong>${score}/${questions.length}</strong>
+        </p>
+        <p style="color: #666; font-size: 16px;">
+            Tỷ lệ đúng: <strong>${percentage}%</strong>
+        </p>
+    `;
+
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("restartBtn").style.display = "inline-block";
+        }
+
+        function restartQuiz() {
+            current = 0;
+            score = 0;
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("nextBtn").style.display = "inline-block";
+            document.getElementById("restartBtn").style.display = "none";
+            document.querySelector(".actions").style.display = "block";
+
+            // Khôi phục lại cấu trúc HTML của quiz div
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `
+                <div class="question" id="question"></div>
+                <div class="answers" id="answers"></div>
+            `;
+
+            // Reset progress bar
+            document.getElementById("progressBar").style.width = "0%";
+
+            loadQuestion();
+        }
+
+        // Khởi tạo khi trang được tải
+        loadQuestion();
+    </script>
+
+</body>
+
+</html>

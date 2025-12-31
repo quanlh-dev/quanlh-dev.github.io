@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thư viện văn bản pháp luật</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png.jpg">
+    <link rel="stylesheet" href="css/thu_vien_van_ban.css">
+    <!-- Thư viện JSZip (dependency của docx-preview) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- Thư viện docx-preview để render DOCX -->
+    <script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.2/dist/docx-preview.min.js"></script>
+</head>
+
+<body>
+
+    <a href="dashboard.html" class="back-btn">← Quay lại Dashboard</a>
+
+    <div class="container header-section">
+        <h2>📚 THƯ VIỆN VĂN BẢN PHÁP LUẬT</h2>
+        <p class="subtitle">Phục vụ học tập, nghiên cứu và tuyên truyền pháp luật trong đơn vị</p>
+    </div>
+
+    <!-- Layout 2 cột -->
+    <div class="main-content">
+        <!-- Sidebar bên trái -->
+        <div class="sidebar">
+            <h3>📁 DANH MỤC VĂN BẢN</h3>
+            <ul class="category-list" id="categoryList">
+                <!-- Danh sách category sẽ được thêm tự động -->
+            </ul>
+        </div>
+
+        <!-- Cột phải - Danh sách văn bản -->
+        <div class="content-area">
+            <h3 id="categoryTitle">📄 DANH SÁCH VĂN BẢN</h3>
+            <ul class="document-list" id="documentList">
+                <!-- Danh sách sẽ được tạo tự động bằng JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal để hiển thị nội dung DOCX -->
+    <div id="docxModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Xem văn bản</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="loading">Đang tải nội dung</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/thu_vien_van_ban.js"></script>
+
+</body>
+
+</html>

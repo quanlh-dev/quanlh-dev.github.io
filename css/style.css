@@ -1,0 +1,376 @@
+/* ====== NỀN CHUNG PHONG CÁCH QUÂN ĐỘI ====== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+
+    /* LỚP 1: NỀN ĐỎ QUÂN ĐỘI */
+    background:
+        /* LỚP 2: HOA VĂN NGÔI SAO MỜ */
+        repeating-linear-gradient(
+            45deg,
+            rgba(255, 215, 0, 0.04) 0px,
+            rgba(255, 215, 0, 0.04) 2px,
+            transparent 2px,
+            transparent 40px
+        ),
+        /* LỚP 3: CHUYỂN SẮC ĐỎ */
+        linear-gradient(
+            135deg,
+            #7a0000 0%,
+            #b40000 45%,
+            #8b0000 100%
+        );
+
+    background-attachment: fixed;
+}
+
+/* ====== CANH GIỮA TRANG ====== */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	padding-top: 120px
+}
+
+/* ====== KHUNG NỘI DUNG CHÍNH ====== */
+.card {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    width: 360px;
+    text-align: center;
+
+    /* Đổ bóng nghiêm túc, không màu mè */
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ====== TIÊU ĐỀ ĐƠN VỊ ====== */
+.card h1 {
+    margin: 0;
+    color: #b40000;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    width: 360px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ====== NÚT BẤM ====== */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+
+    background: #b40000;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+}
+
+/* Nút phụ */
+button:nth-of-type(2) {
+    background: #2f2f2f;
+}
+
+/* Hiệu ứng khi rê chuột */
+button:hover {
+    opacity: 0.9;
+}
+
+/* ====== HỘP THÔNG TIN SÁNG KIẾN ====== */
+#ideaBox {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+#ideaBox h3 {
+    color: #b40000;
+    margin-bottom: 5px;
+}
+
+#ideaBox h4 {
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #222;
+}
+
+#ideaBox p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* LỚP PHỦ HOA VĂN QUÂN KỲ */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        radial-gradient(
+            circle at center,
+            rgba(255, 215, 0, 0.05) 0%,
+            rgba(255, 215, 0, 0.02) 20%,
+            transparent 60%
+        );
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ====== LOGO ĐƠN VỊ PHÍA TRÊN ====== */
+.logo-top {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.logo-top img {
+    width: 165px;
+    height: auto;
+    opacity: 0.95;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== MENU 4 CHỨC NĂNG SINH ĐỘNG ===== */
+.menu-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px 20px;
+    text-align: center;
+
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    cursor: pointer;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.35);
+}
+
+.menu-card .icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.menu-card h3 {
+    margin: 10px 0 6px;
+    font-size: 16px;
+    color: #222;
+}
+
+.menu-card p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.menu-card small {
+    display: block;
+    margin-top: 6px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* ===== MÀU NHẤN TỪNG CHỨC NĂNG ===== */
+.menu-card.red {
+    border-top: 6px solid #b40000;
+}
+
+.menu-card.blue {
+    border-top: 6px solid #1e5aa8;
+}
+
+.menu-card.green {
+    border-top: 6px solid #2e7d32;
+}
+
+.menu-card.gray {
+    border-top: 6px solid #666;
+}
+/* ===== BANNER QUÂN KỲ ===== */
+.banner {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #8b0000, #b40000);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* DẢI CỜ BAY */
+.flag-wave {
+    position: absolute;
+    top: -30px;
+    left: -50%;
+    width: 200%;
+    height: 120%;
+    background: rgba(255, 255, 255, 0.08);
+    transform: rotate(-3deg);
+    animation: wave 8s infinite linear;
+}
+
+/* HIỆU ỨNG BAY */
+@keyframes wave {
+    0% { transform: translateX(0) rotate(-3deg); }
+    50% { transform: translateX(10%) rotate(-2deg); }
+    100% { transform: translateX(0) rotate(-3deg); }
+}
+
+/* NỘI DUNG CHỮ */
+.banner-content {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    padding: 10px 20px;
+}
+
+.banner-content h1 {
+    font-size: 30px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.banner-content h2 {
+    font-size: 16px;
+    margin: 8px 0;
+    font-weight: normal;
+}
+
+.banner-content p {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* ===== THANH CHÀO MỪNG CHẠY NGANG ===== */
+.welcome-bar {
+    width: 100%;
+    background: #7a0000;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.welcome-text {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    animation: marquee 18s linear infinite;
+}
+
+/* HIỆU ỨNG CHẠY */
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 30px;
+}
+
+.menu-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+}
+
+.menu-card .icon {
+    font-size: 40px;
+}
+
+.menu-card.red {
+    border-top: 6px solid #b40000;
+}
+
+.menu-card.blue {
+    border-top: 6px solid #1e5aa8;
+}
+
+.library-section {
+    background: #ffffff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.library-section h3 {
+    margin-bottom: 10px;
+    color: #b40000;
+}
+
+.doc-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.doc-list li {
+    margin: 10px 0;
+}
+
+.doc-list a {
+    text-decoration: none;
+    color: #1e3a5f;
+    font-weight: 500;
+}
+
+.doc-list a:hover {
+    text-decoration: underline;
+}
+
+.menu-link  {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}

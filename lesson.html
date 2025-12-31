@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thư viện infographic pháp luật</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png.jpg">
+    <link rel="stylesheet" href="css/lesson.css">
+</head>
+
+<body>
+
+    <a href="dashboard.html" class="back-btn">← Quay lại Dashboard</a>
+
+    <div class="container header-section">
+        <h2>🖼️ THƯ VIỆN INFOGRAPHIC PHÁP LUẬT</h2>
+        <p class="subtitle">Phục vụ giảng dạy, học tập và tuyên truyền pháp luật trong đơn vị</p>
+    </div>
+
+    <!-- Layout 2 cột -->
+    <div class="main-content">
+        <!-- Sidebar bên trái -->
+        <div class="sidebar">
+            <h3>📁 DANH MỤC INFOGRAPHIC</h3>
+            <ul class="folder-list" id="folderList">
+                <!-- Danh sách folder sẽ được thêm tự động -->
+            </ul>
+        </div>
+
+        <!-- Cột phải - Slider -->
+        <div class="slider-container" id="slidersContainer">
+            <!-- Các slider sẽ được thêm tự động theo folder -->
+        </div>
+    </div>
+
+    <!-- Section Video -->
+    <div class="video-section">
+        <div class="video-section-header">
+            <h3>🎬 VIDEO PHÁP LUẬT</h3>
+        </div>
+        <div class="video-list-container">
+            <div class="video-list" id="videoList">
+                <!-- Danh sách video sẽ được thêm tự động -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Danh sách INFOGRAPHIC được tổ chức theo folder
+        const infographicFolders = {
+            "PHÁP LUẬT": [
+                {
+                    name: "10 tỉnh có thêm thành phố, thị trấn mới",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/10_tinh_co_them_thanh_pho,_thi_tran_moi_(2)_1004090724.webp"
+                },
+                {
+                    name: "6 lần đổi tên của căn cước công dân",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/6-lan-doi-ten-cua-can-cuoc-cong-dan_0905102419.webp"
+                },
+                {
+                    name: "7 bước tích hợp GPLX, thẻ BHYT vào VNeID tại nhà",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/7_buoc_tu_tich_hop_GPLX-the_BHYT_vao_VNeID_tai_nha_3003171421.webp"
+                },
+                {
+                    name: "Các loại bằng lái xe và thời hạn sử dụng",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/cac-loai-bang-lai-xe-va-thoi-han-su-dung-tai-viet-nam_0803131405.webp"
+                },
+                {
+                    name: "Các loại giấy tờ đã được thay thế bằng bản điện tử",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/cac-loai-giay-to-da-duoc-thay-the-bang-ban-dien-tu_2404154452.webp"
+                },
+                {
+                    name: "Cảnh sát giao thông được yêu cầu dừng xe",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/canh-sat-giao-thong-duoc-yeu-cau-dung-xe_1712100835.webp"
+                },
+                {
+                    name: "Độ tuổi được thi bằng lái xe",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/do-tuoi-duoc-thi-bang-lai-xe_1503134211.webp"
+                },
+                {
+                    name: "Hướng dẫn đăng ký tài khoản định danh điện tử",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/huong-dan-cach-dang-ky-tai-khoan-dinh-danh-dien-tu_1309092018.webp"
+                },
+                {
+                    name: "Huy hiệu Đảng và mức tiền thưởng",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/huy-hieu-dang-va-muc-tien-thuong_1803082442.webp"
+                },
+                {
+                    name: "Khoản tiền bị mất nếu không đóng BHXH",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/khoan-tien-bi-mat-neu-khong-dong-bhxh_2704092518.webp"
+                },
+                {
+                    name: "Lỗi giao thông không cần lập biên bản",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/loi-giao-thong-khong-can-lap-bien-ban_0504081959.webp"
+                },
+                {
+                    name: "Lỗi xe không chính chủ",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/loi-xe-khong-chinh-chu_2705081738.webp"
+                },
+                {
+                    name: "Luật nghĩa vụ quân sự",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/luật NVQS.jpg"
+                },
+                {
+                    name: "Luật phòng chống ma túy (1)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/luật phòng chống ma tuý 1.jpg"
+                },
+                {
+                    name: "Luật khám chữa bệnh",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/Luat_kahm_chua_benh_2102131701.webp"
+                },
+                {
+                    name: "Ma túy (2)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 2.jpg"
+                },
+                {
+                    name: "Ma túy (3)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 3.jpg"
+                },
+                {
+                    name: "Ma túy (4)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 4.jpg"
+                },
+                {
+                    name: "Ma túy (5)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 5.jpg"
+                },
+                {
+                    name: "Ma túy (6)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 6.jpg"
+                },
+                {
+                    name: "Ma túy (7)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 7.jpg"
+                },
+                {
+                    name: "Ma túy (8)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 8.jpg"
+                },
+                {
+                    name: "Ma túy (9)",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/ma tuý 9.jpg"
+                },
+                {
+                    name: "Mức phạt vi phạm nghĩa vụ quân sự",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/muc-phat-vi-pham-nghia-vu-quan0su-1_2810113410.webp"
+                },
+                {
+                    name: "Tốc độ tối đa của các loại xe",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/Toc_do_toi_da_cua_cac_loai_xe_theo_quy_dinh_moi_nhat_(1)_1910112008.webp"
+                },
+                {
+                    name: "Trò lừa đảo qua mạng",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/tro-lua-dao-qua-mang_1304081820.webp"
+                },
+                {
+                    name: "Trừ khoản tiền nào trong lương",
+                    file: "data/INFOGRAPHIC PHÁP LUẬT/tru-khoan-tien-nao-trong-luong_1105095900.webp"
+                }
+            ],
+            "AN NINH MẠNG": [
+                { name: "Bảo vệ trẻ em trên mạng", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-10-13-bao-ve-tre-em-tren-mang_ruby.jpg" },
+                { name: "VN lừa đảo sau bão", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-10-14-vn-lua-dao-sau-bao-lu-ngoc.jpg" },
+                { name: "VN kiến thức an ninh mạng", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-10-16-vn-kien-thuc-an-ninh-mang-ngoc.jpg" },
+                { name: "VN đừng để thanh niên lừa mạng xã hội", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-7-29-vn-dunng-de-thanh-nienn-lua-mxh-ngoc.jpg" },
+                { name: "VN cảnh giác hóa đơn điện", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-8-12-vn-canh-giac-hoa-don-dien-ngoc.jpg" },
+                { name: "VN bắt cóc online", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-8-8-vn-bat-coc-online-ngoc.jpg" },
+                { name: "VN ĐH QGHN mạo danh", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-8-8-vn-dh-qghn-mao-danh-ngoc.jpg" },
+                { name: "VN cảnh báo lừa đảo AI Deepfake", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-9-11-vn-canh-bao-lua-dao-ai-deepfake-ngoc.jpg" },
+                { name: "VN giả mạo taxi", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-9-11-vn-gia-mao-taxi-ngoc.jpg" },
+                { name: "VN cảnh báo giả mạo BTC", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-9-25-vn-canh-bao-gia-mao-btc-ngoc.jpg" },
+                { name: "VN lừa đảo cục thuế", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-9-25-vn-lua-dao-cuc-thue-ngoc.jpg" },
+                { name: "VN mạo danh cá độ lừa đảo", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-9-8-vn-mao-danh-ca-de-lua-dao-ngoc.jpg" },
+                { name: "VN nâng cao cảnh giác không gian mạng", file: "data/INFOGRAPHIC AN NINH MẠNG/2025-9-9-vn-nang-cao-canh-giac-khong-gian-mang-ngoc.jpg" },
+                { name: "Cảnh báo cài VNeID giả mạo", file: "data/INFOGRAPHIC AN NINH MẠNG/20250709-canh-bao-cai-vneid-gia-mao-quang-2.png" },
+                { name: "Bắt cóc online", file: "data/INFOGRAPHIC AN NINH MẠNG/250929bat-coc-online-quang-2.png" },
+                { name: "An ninh mạng", file: "data/INFOGRAPHIC AN NINH MẠNG/img_1809.png" }
+            ],
+            "QUÂN SỰ": [
+                { name: "12 đại tướng quân đội NDVN", file: "data/INFOGRAPHIC QUÂN SỰ/12 dai tuong quan doi NDVN-01.jpg" },
+                { name: "QĐND VN chống Mỹ", file: "data/INFOGRAPHIC QUÂN SỰ/2019-10-12-vn-qdnd-vn-chong-my-ngoc-ngoc-01-01.jpg" },
+                { name: "Bộ đội cụ Hồ", file: "data/INFOGRAPHIC QUÂN SỰ/2019-11-12-vn-bo-doi-cu-ho-ngoc-01-01.jpg" },
+                { name: "HCM sáng lập QĐND VN", file: "data/INFOGRAPHIC QUÂN SỰ/2019-12-16-vn-hcm-sang-lap-qdnd-vn-ngoc-01-2-01.jpg" },
+                { name: "Nét độc đáo QĐND VN", file: "data/INFOGRAPHIC QUÂN SỰ/2019-12-16-vn-net-doc-dao-qdnd-vn-ngoc-01.jpg" },
+                { name: "QĐND VN vì dân", file: "data/INFOGRAPHIC QUÂN SỰ/2019-12-18-vn-qdnd-vn-vidan-ngoc-01-01.jpg" },
+                { name: "Trung với Đảng hiếu với dân", file: "data/INFOGRAPHIC QUÂN SỰ/2019-18-12-vn-trung-voi-dang-hieu-voi-dan-ngoc-01-01.jpg" },
+                { name: "Dấu mốc QĐND VN", file: "data/INFOGRAPHIC QUÂN SỰ/2019-9-12-vn-dau-moc-qdnd-vn-ngoc-ngoc-ngoc.jpg" },
+                { name: "VNG học trò XS HCM", file: "data/INFOGRAPHIC QUÂN SỰ/2021-8-23-vn-vng-hoc-tro-xs-hcm-ngoc-01-01.jpg" },
+                { name: "Võ Nguyên Giáp", file: "data/INFOGRAPHIC QUÂN SỰ/2021-8-23-vo-nguyen-giap-4_ruby.jpg" },
+                { name: "Ý nghĩa ĐBP trên không", file: "data/INFOGRAPHIC QUÂN SỰ/2022-12-21-v-y-nghiia-dbp-trenn-khong-ngoc_ruby.jpg" },
+                { name: "Bộ đội cụ Hồ", file: "data/INFOGRAPHIC QUÂN SỰ/2022-12-21-vn-bo-doi-cu-ho-ngoc-01-01.jpg" },
+                { name: "Văn Tiến Dũng", file: "data/INFOGRAPHIC QUÂN SỰ/2022-4-29-van-tien-dung-v_ruby.jpg" },
+                { name: "Trần Đại Nghĩa", file: "data/INFOGRAPHIC QUÂN SỰ/2022-8-8-vn-tran-dai-nghia-ngoc_ngoc.jpg" },
+                { name: "Quân đội ND VN", file: "data/INFOGRAPHIC QUÂN SỰ/2023-12-21-quan-doi-nd-vn_ruby.jpg" },
+                { name: "Chiến dịch Thượng Lào", file: "data/INFOGRAPHIC QUÂN SỰ/2023-4-10-vn-chien-dich-thuong-lao-ngoc.jpg" },
+                { name: "Lê Trọng Tấn", file: "data/INFOGRAPHIC QUÂN SỰ/2024-09-30_vn-le-trong-tan_05_h84.jpg" },
+                { name: "34 chiến sĩ QĐND VN", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-13-vn-34-chien-sii-qdnd-vn-ngoc_ngoc-1.jpg" },
+                { name: "34 chiến sĩ QĐND VN (2)", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-13-vn-34-chien-sii-qdnd-vn-ngoc_ngoc-copy-2.jpg" },
+                { name: "34 chiến sĩ QĐND VN (3)", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-13-vn-34-chien-sii-qdnd-vn-ngoc_ngoc-copy-3.jpg" },
+                { name: "34 chiến sĩ QĐND VN (4)", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-13-vn-34-chien-sii-qdnd-vn-ngoc_ngoc-copy-4.jpg" },
+                { name: "Truyền thống vẻ vang QĐND VN", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-13-vn-truyen-thong-ve-vang-qdnd-vn-ngoc.jpg" },
+                { name: "QĐND 80 năm lễ kỷ niệm", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-20-vn-qdnd-80y-le-kyniem_09_h84.jpg" },
+                { name: "Trù lãm quốc phòng thành công tốt đẹp", file: "data/INFOGRAPHIC QUÂN SỰ/2024-12-23-vn-tr-lam-quoc-phong-thanh-cong-tot-dep-ngoc.jpg" },
+                { name: "Có quyết chiến quyết thắng", file: "data/INFOGRAPHIC QUÂN SỰ/2024-5-6-vn-co-quyet-chien-quyet-thang-ngoc.jpg" },
+                { name: "Nguyễn Thị Định", file: "data/INFOGRAPHIC QUÂN SỰ/2025-3-14-vn-nguyen-thi-dinh-ngoc_ngoc-copy.jpg" },
+                { name: "Quân đội chỉ thị 05", file: "data/INFOGRAPHIC QUÂN SỰ/2025-7-4-vn-quan-doi-chi-thi-05-ngoc.jpg" },
+                { name: "Bài viết TBT Đảng bộ quân đội", file: "data/INFOGRAPHIC QUÂN SỰ/2025-9-24-vn-bai-viet-tbt-dang-bo-quan-doi-ngoc_ngoc-copy.jpg" },
+                { name: "Bài viết TBT Đảng bộ quân đội (2)", file: "data/INFOGRAPHIC QUÂN SỰ/2025-9-24-vn-bai-viet-tbt-dang-bo-quan-doi-ngoc_ngoc.jpg" },
+                { name: "70 năm QĐND", file: "data/INFOGRAPHIC QUÂN SỰ/70NAMQDND (8).jpg" }
+            ],
+            "LUẬT KHÁC": [
+                { name: "10 điều luật giật lưng khi kết hôn", file: "data/INFOGRAPHIC LUẬT KHÁC/10_dieu_luat_giat_lung_khi_ket_hon_1410085441.webp" },
+                { name: "Kỷ luật Đảng", file: "data/INFOGRAPHIC LUẬT KHÁC/2022-7-29-vn-ky-luat-dang-2-ngoc_ngoc-copy.jpg" },
+                { name: "Luật CBCC 03", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-07-03-vn-luat-cbcc-03_p4-h84.jpg" },
+                { name: "Đảng bộ CP nhệm vụ TT", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-10-4-vn-dang-bo-cp-nhem-vu-tt-ngoc-01.jpg" },
+                { name: "Kết luận 202 bài 2", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-11-01-ket-luan-202_bai-2-ruby.jpg" },
+                { name: "Kết luận 202 bài 3", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-11-01-ket-luan-202_bai-3-ruby-1.jpg" },
+                { name: "BBT KL207 02 phần 1", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-11-13-vn-bbt-kl207-02_p1-h84.jpg" },
+                { name: "BBT KL207 02 phần 2", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-11-13-vn-bbt-kl207-02_p2-h84.jpg" },
+                { name: "TBT tổ làm sức mạnh đoàn kết", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-6-29-vn-tbt-to-lam-suc-manh-doan-ket-ngoc_gp-3_2.jpg" },
+                { name: "Hoàn thành chính quyền địa phương 2 cấp", file: "data/INFOGRAPHIC LUẬT KHÁC/2025-9-4-vn-hoan-thanh-chinh-quyen-dia-phuong-2-cap-ngoc.jpg" },
+                { name: "Luật khác", file: "data/INFOGRAPHIC LUẬT KHÁC/7c2ad2416e030d89ee0a682ceebf7c96.jpg" },
+                { name: "9 mối quan hệ không được kết hôn", file: "data/INFOGRAPHIC LUẬT KHÁC/9_moi_quan_he_khong_duoc_ket_hon_2309144142.jpg" },
+                { name: "Background bộ tự trụ cột", file: "data/INFOGRAPHIC LUẬT KHÁC/background-bo-tu-tru-cot.jpg" },
+                { name: "Luật hôn nhân gia đình", file: "data/INFOGRAPHIC LUẬT KHÁC/luat-hon-nhan-gia-dinh.jpg" }
+            ],
+            "VĂN HOÁ - XÃ HỘI": [
+                { name: "Văn hóa xã hội", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/1000036973.png" },
+                { name: "Lê Trọng Tấn", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2024-09-30_vn-le-trong-tan_05_h84.jpg" },
+                { name: "Di sản VN TN TG", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-07-12-vn-disan-vn-tn-tg-02_h84.jpg" },
+                { name: "Rửa tay với xà phòng 15-10", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-10-14-vn-rua-tay-voi-xa-phong-15-10-ngoc-1.jpg" },
+                { name: "Kinh tế xã hội chi tiêu", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-10-22-vn-kinh-te-xa-hoi-chi-tieu-ngoc.jpg" },
+                { name: "DTSQ UNESCO", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-11-03-vn-dtsq-unesco-11p-03_h84.jpg" },
+                { name: "Bình đẳng giới", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-11-13-vn-binh-dang-gioi-ngoc.jpg" },
+                { name: "Giữ ấm chung", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-11-18-vn-giu-am-chung_h84.jpg" },
+                { name: "Khuyến cáo phòng chống viêm đường hô hấp cấp", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-11-18-vn-khuyen-cao-phong-chong-viem-duong-ho-hap-cap-ngoc.jpg" },
+                { name: "Chăm sóc sức khỏe mùa lạnh", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-11-5-vn-cham-soc-sk-mua-lanh-ngoc_ngoc-copy-2.jpg" },
+                { name: "Chăm sóc sức khỏe mùa lạnh (2)", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-11-5-vn-cham-soc-sk-mua-lanh-ngoc_ngoc-copy.jpg" },
+                { name: "Hoàng Quốc Việt", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-5-26-vn-hoang-quoc-viet-ngoc.jpg" },
+                { name: "TBT Nguyễn Văn Linh", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-6-30-v-tbt-nguyen-van-linh-ngoc-1.jpg" },
+                { name: "Phòng bệnh mùa lũ BYT", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-8-10-vn-phong-benh-mua-lu-byt-ngoc_ngoc-copy-2_1.jpg" },
+                { name: "Phòng bệnh mùa lũ BYT (3)", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-8-10-vn-phong-benh-mua-lu-byt-ngoc_ngoc-copy-3.jpg" },
+                { name: "Phòng bệnh mùa lũ BYT (4)", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-8-10-vn-phong-benh-mua-lu-byt-ngoc_ngoc-copy-4.jpg" },
+                { name: "Phòng bệnh mùa lũ BYT (6)", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-8-10-vn-phong-benh-mua-lu-byt-ngoc_ngoc-copy-6.jpg" },
+                { name: "Phòng bệnh mùa lũ BYT", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-8-10-vn-phong-benh-mua-lu-byt-ngoc_ngoc-copy.jpg" },
+                { name: "Phòng bệnh mùa lũ BYT", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2025-8-10-vn-phong-benh-mua-lu-byt-ngoc_ngoc.jpg" },
+                { name: "Di tích quốc gia đặc biệt", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/2509124-di-tich-quoc-gia-dac-biethuong.jpg" },
+                { name: "Hàng giả hàng nhái", file: "data/INFOGRAPHIC VĂN HOÁ - XÃ HỘI/hang-gia-hang-nhai.jpg" }
+            ]
+        };
+
+        const sliderInstances = {}; // Lưu trữ state của mỗi slider
+
+        let currentActiveFolder = null;
+
+        // Hàm tạo sidebar với danh sách folder
+        function createSidebar() {
+            const folderList = document.getElementById('folderList');
+
+            Object.keys(infographicFolders).forEach((folderName, index) => {
+                const folderItem = document.createElement('li');
+                folderItem.className = 'folder-item' + (index === 0 ? ' active' : '');
+                folderItem.onclick = () => selectFolder(folderName);
+
+                const folderNameSpan = document.createElement('span');
+                folderNameSpan.className = 'folder-item-name';
+                folderNameSpan.textContent = folderName;
+
+                folderItem.appendChild(folderNameSpan);
+                folderList.appendChild(folderItem);
+            });
+        }
+
+        // Hàm chọn folder và hiển thị slider tương ứng
+        function selectFolder(folderName) {
+            // Cập nhật active state trong sidebar
+            const folderItems = document.querySelectorAll('.folder-item');
+            folderItems.forEach(item => {
+                if (item.querySelector('.folder-item-name').textContent === folderName) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Ẩn tất cả slider
+            const allSliders = document.querySelectorAll('.slider-wrapper');
+            allSliders.forEach(slider => {
+                slider.classList.remove('active');
+            });
+
+            // Hiển thị slider của folder được chọn
+            const selectedSlider = document.getElementById(`slider-${folderName.replace(/\s+/g, '-')}`);
+            if (selectedSlider) {
+                selectedSlider.classList.add('active');
+                currentActiveFolder = folderName;
+            } else {
+                // Nếu slider chưa được tạo, tạo nó
+                const infographics = infographicFolders[folderName];
+                if (infographics && infographics.length > 0) {
+                    createSlider(folderName, infographics);
+                    const newSlider = document.getElementById(`slider-${folderName.replace(/\s+/g, '-')}`);
+                    if (newSlider) {
+                        newSlider.classList.add('active');
+                        currentActiveFolder = folderName;
+                    }
+                }
+            }
+        }
+
+        // Hàm tạo slider cho một folder
+        function createSlider(folderName, infographics) {
+            if (!infographics || infographics.length === 0) return;
+
+            const container = document.getElementById('slidersContainer');
+
+            // Tạo wrapper cho slider
+            const sliderWrapper = document.createElement('div');
+            sliderWrapper.className = 'slider-wrapper';
+            sliderWrapper.id = `slider-${folderName.replace(/\s+/g, '-')}`;
+
+            // Tạo slider container
+            const sliderContainer = document.createElement('div');
+            sliderContainer.className = 'slider-inner-wrapper';
+
+            const slider = document.createElement('div');
+            slider.className = 'slider';
+            slider.id = `imageSlider-${folderName.replace(/\s+/g, '-')}`;
+
+            // Thông tin slide bên trái (tên ảnh)
+            const sliderInfoLeft = document.createElement('div');
+            sliderInfoLeft.className = 'slider-info slider-info-left';
+            sliderInfoLeft.innerHTML = `
+                <span id="currentImageName-${folderName.replace(/\s+/g, '-')}"></span>
+            `;
+
+            // Thông tin slide bên phải (số thứ tự)
+            const sliderInfoRight = document.createElement('div');
+            sliderInfoRight.className = 'slider-info slider-info-right';
+            sliderInfoRight.innerHTML = `
+                <span id="currentImageInfo-${folderName.replace(/\s+/g, '-')}">1 / ${infographics.length}</span>
+            `;
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'slider-btn prev-btn';
+            prevBtn.textContent = '❮';
+            prevBtn.onclick = () => changeSlide(folderName, -1);
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'slider-btn next-btn';
+            nextBtn.textContent = '❯';
+            nextBtn.onclick = () => changeSlide(folderName, 1);
+
+            // Thêm slides
+            infographics.forEach((item, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.style.minWidth = '100%';
+                const img = document.createElement('img');
+                img.src = item.file;
+                img.alt = item.name;
+                slide.appendChild(img);
+                slider.appendChild(slide);
+            });
+
+            sliderContainer.appendChild(slider);
+            sliderContainer.appendChild(prevBtn);
+            sliderContainer.appendChild(nextBtn);
+            sliderContainer.appendChild(sliderInfoLeft);
+            sliderContainer.appendChild(sliderInfoRight);
+
+            sliderWrapper.appendChild(sliderContainer);
+            container.appendChild(sliderWrapper);
+
+            // Khởi tạo state cho slider này
+            sliderInstances[folderName] = {
+                currentSlide: 0,
+                infographics: infographics
+            };
+
+            updateSlideInfo(folderName);
+        }
+
+        // Hàm chuyển slide (sử dụng folder đang active nếu không chỉ định)
+        function changeSlide(folderName, direction) {
+            // Nếu không chỉ định folder, dùng folder đang active
+            if (!folderName && currentActiveFolder) {
+                folderName = currentActiveFolder;
+            }
+
+            const instance = sliderInstances[folderName];
+            if (!instance) return;
+
+            const newIndex = instance.currentSlide + direction;
+            if (newIndex >= 0 && newIndex < instance.infographics.length) {
+                goToSlide(folderName, newIndex);
+            } else if (newIndex < 0) {
+                goToSlide(folderName, instance.infographics.length - 1);
+            } else {
+                goToSlide(folderName, 0);
+            }
+        }
+
+        // Hàm chuyển đến slide cụ thể
+        function goToSlide(folderName, index) {
+            const instance = sliderInstances[folderName];
+            if (!instance) return;
+
+            instance.currentSlide = index;
+            const sliderId = `imageSlider-${folderName.replace(/\s+/g, '-')}`;
+            const slider = document.getElementById(sliderId);
+            if (slider) {
+                slider.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            updateSlideInfo(folderName);
+        }
+
+        // Hàm cập nhật thông tin slide
+        function updateSlideInfo(folderName) {
+            const instance = sliderInstances[folderName];
+            if (!instance) return;
+
+            const infoId = `currentImageInfo-${folderName.replace(/\s+/g, '-')}`;
+            const nameId = `currentImageName-${folderName.replace(/\s+/g, '-')}`;
+
+            const infoEl = document.getElementById(infoId);
+            const nameEl = document.getElementById(nameId);
+
+            if (infoEl) {
+                infoEl.textContent = `${instance.currentSlide + 1} / ${instance.infographics.length}`;
+            }
+            if (nameEl && instance.infographics[instance.currentSlide]) {
+                nameEl.textContent = instance.infographics[instance.currentSlide].name;
+            }
+        }
+
+        // Danh sách video từ folder VIDEO LUẬT
+        const videos = [
+            { name: "[Cập Nhật] Tăng Hàng Loạt Mức Phạt Mới Khi Vi Phạm Về Nghĩa Vụ Quân Sự", file: "data/VIDEO LUẬT/[Cập Nhật] Tăng Hàng Loạt Mức Phạt Mới Khi Vi Phạm Về Nghĩa Vụ Quân Sự - LuatVietnam.vn.mp4" },
+            { name: "Đăng Ký Khai Sinh, Kết Hôn Thay Đổi Thế Nào Từ 01-7-2025", file: "data/VIDEO LUẬT/Đăng Ký Khai Sinh, Kết Hôn Thay Đổi Thế Nào Từ 01-7-2025- - LuatVietnam.vn.mp4" },
+            { name: "Đảng Viên Cần Biết Những Quy Định Đáng Chú Ý Này Từ 01-7-2025", file: "data/VIDEO LUẬT/Đảng Viên Cần Biết Những Quy Định Đáng Chú Ý Này Từ 01-7-2025 - LuatVietnam.vn.mp4" },
+            { name: "Đảng Viên Sinh Con Thứ 3- Quy Định Mới Thay Đổi Thế Nào", file: "data/VIDEO LUẬT/Đảng Viên Sinh Con Thứ 3- Quy Định Mới Thay Đổi Thế Nào- - LuatVietnam.vn.mp4" },
+            { name: "Điểm Mới Nghị Định 52-2025-NĐ-CP Về Chế Độ Trong Quân Đội", file: "data/VIDEO LUẬT/Điểm Mới Nghị Định 52-2025-NĐ-CP Về Chế Độ Trong Quân Đội - LuatVietnam.vn.mp4" },
+            { name: "Hoạt động tuyên truyền phòng, chống ma túy 2023", file: "data/VIDEO LUẬT/Hoạt động tuyen truyen phòng, chống ma tuy 2023.mp4" },
+            { name: "Nhiều quy định mới về khám sức khỏe nghĩa vụ quân sự 2026", file: "data/VIDEO LUẬT/Nhiều quy định mới về khám sức khỏe nghĩa vụ quân sự 2026 - THƯ VIỆN PHÁP LUẬT.mp4" },
+            { name: "Quân Nhân Nghỉ Hưu Trước Tuổi Được Hưởng Những Khoản Trợ Cấp Nào", file: "data/VIDEO LUẬT/Quân Nhân Nghỉ Hưu Trước Tuổi Được Hưởng Những Khoản Trợ Cấp Nào- - LuatVietnam.vn.mp4" },
+            { name: "Từ 1-7: 4 trường hợp sử dụng ma túy sẽ bị xử lý hình sự", file: "data/VIDEO LUẬT/Từ 1-7- 4 trường hợp sử dụng ma túy sẽ bị xử lý hình sự - PLO.mp4" }
+        ];
+
+        // Hàm tạo danh sách video
+        function loadVideos() {
+            const videoList = document.getElementById('videoList');
+            videoList.innerHTML = '';
+
+            videos.forEach((video) => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+
+                const videoThumbnail = document.createElement('div');
+                videoThumbnail.className = 'video-thumbnail';
+
+                // Tạo video element ẩn để lấy thumbnail
+                const videoElement = document.createElement('video');
+                videoElement.src = video.file;
+                videoElement.preload = 'metadata';
+                videoElement.muted = true;
+                videoElement.style.display = 'none';
+                videoElement.crossOrigin = 'anonymous';
+
+                // Tạo thumbnail từ video frame đầu tiên
+                videoElement.addEventListener('loadedmetadata', function () {
+                    // Seek đến frame đầu tiên
+                    videoElement.currentTime = 0.1;
+                });
+
+                videoElement.addEventListener('seeked', function () {
+                    try {
+                        // Tạo canvas để vẽ thumbnail
+                        const canvas = document.createElement('canvas');
+                        const maxWidth = 300;
+                        const maxHeight = 200;
+                        const videoAspect = videoElement.videoWidth / videoElement.videoHeight;
+
+                        let canvasWidth = videoElement.videoWidth;
+                        let canvasHeight = videoElement.videoHeight;
+
+                        // Scale down nếu quá lớn
+                        if (canvasWidth > maxWidth) {
+                            canvasWidth = maxWidth;
+                            canvasHeight = maxWidth / videoAspect;
+                        }
+                        if (canvasHeight > maxHeight) {
+                            canvasHeight = maxHeight;
+                            canvasWidth = maxHeight * videoAspect;
+                        }
+
+                        canvas.width = canvasWidth;
+                        canvas.height = canvasHeight;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(videoElement, 0, 0, canvasWidth, canvasHeight);
+
+                        // Set thumbnail làm background
+                        videoThumbnail.style.backgroundImage = `url(${canvas.toDataURL()})`;
+                        videoThumbnail.style.backgroundSize = 'cover';
+                        videoThumbnail.style.backgroundPosition = 'center';
+                    } catch (error) {
+                        console.error('Lỗi khi tạo thumbnail:', error);
+                        // Fallback: hiển thị màu nền đen
+                        videoThumbnail.style.backgroundColor = '#000';
+                    }
+                });
+
+                videoThumbnail.appendChild(videoElement);
+
+                videoThumbnail.onclick = function () {
+                    openVideoModal(video.file, video.name);
+                };
+
+                const videoTitle = document.createElement('div');
+                videoTitle.className = 'video-title';
+                videoTitle.textContent = video.name;
+
+                videoItem.appendChild(videoThumbnail);
+                videoItem.appendChild(videoTitle);
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        // Hàm mở video trong modal
+        function openVideoModal(videoFile, videoName) {
+            const modal = document.createElement('div');
+            modal.className = 'video-modal';
+            modal.innerHTML = `
+                <div class="video-modal-content">
+                    <div class="video-modal-header">
+                        <h3>${videoName}</h3>
+                        <button class="close-video-btn" onclick="this.closest('.video-modal').remove()">×</button>
+                    </div>
+                    <div class="video-modal-body">
+                        <video controls autoplay style="width: 100%; max-height: 80vh;">
+                            <source src="${videoFile}" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video.
+                        </video>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Đóng modal khi click bên ngoài
+            modal.onclick = function (e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            };
+        }
+
+        // Tải sidebar và slider đầu tiên khi trang được load
+        window.onload = function () {
+            // Tạo sidebar
+            createSidebar();
+
+            // Tạo slider cho folder đầu tiên
+            const firstFolder = Object.keys(infographicFolders)[0];
+            if (firstFolder) {
+                const infographics = infographicFolders[firstFolder];
+                if (infographics && infographics.length > 0) {
+                    createSlider(firstFolder, infographics);
+                    selectFolder(firstFolder);
+                }
+            }
+
+            // Tải danh sách video
+            loadVideos();
+        };
+    </script>
+
+</body>
+
+</html>
