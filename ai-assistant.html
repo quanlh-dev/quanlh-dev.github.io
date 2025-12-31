@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ Lý Ảo Gemini - Tra Cứu Luật</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --bg-color: #f3f4f6;
+            --chat-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --user-bubble: #4f46e5;
+            --ai-bubble: #f3f4f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal Overlay */
+        #api-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: var(--text-main);
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .modal-content input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .modal-content button:hover {
+            background: #4338ca;
+        }
+
+        /* Main Chat UI */
+        .chat-container {
+            width: 100%;
+            max-width: 700px;
+            height: 90vh;
+            background: var(--chat-bg);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        .clear-btn {
+            font-size: 0.8rem;
+            color: #ef4444;
+            background: #fef2f2;
+            border: 1px solid #fee2e2;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+            background: #fee2e2;
+        }
+
+        #chat-window {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #fafafa;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--user-bubble);
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: white;
+            color: var(--text-main);
+            border-bottom-left-radius: 2px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .input-area {
+            padding: 20px 25px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            gap: 12px;
+            background: #fff;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        #sendBtn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .typing {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 5px 25px;
+            background: #fafafa;
+            display: none;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    </div>
+    <!-- Popup nhập API Key -->
+    <div id="api-modal">
+        <div class="modal-content">
+            <h2>Chào mừng bạn! 👋</h2>
+            <p>Để bắt đầu tra cứu văn bản luật bằng AI, vui lòng nhập <b>Gemini API Key</b> của bạn. Bạn có thể tạo key
+                miễn phí tại <a href="https://aistudio.google.com/" target="_blank"
+                    style="color: var(--primary-color);">Google AI Studio</a>.</p>
+            <input type="password" id="apiKeyInput" placeholder="Dán API Key tại đây...">
+            <button id="saveKeyBtn">Bắt đầu ngay</button>
+            <p style="margin-top:20px; font-size: 0.75rem; border-top: 1px solid #eee; pt-15px;">
+                🔒 <b>Bảo mật:</b> Key được lưu trực tiếp trên trình duyệt của bạn (LocalStorage) và chỉ được gửi tới
+                máy chủ của Google.
+            </p>
+        </div>
+    </div>
+
+    <!-- Giao diện Chat chính -->
+    <div class="chat-container">
+        <div class="chat-header">
+
+            <div class="header-info">
+                <div class="dot"></div>
+                <div>
+                    <a href="dashboard.html" class="back-btn">← Quay lại Dashboard</a>
+                    <h1 style="font-size: 1rem; font-weight: 600;">Trợ Lý AI Pháp Luật</h1>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Đang kết nối dữ liệu: van_ban_luat.txt</p>
+                </div>
+            </div>
+            <button class="clear-btn" id="clearKeyBtn">Đổi API Key</button>
+        </div>
+
+        <div id="chat-window">
+            <!-- Thông báo chào mừng từ AI -->
+            <div class="message ai">
+                Chào bạn! Tôi đã sẵn sàng hỗ trợ bạn tra cứu thông tin dựa trên các văn bản luật đã được tải lên. Bạn
+                muốn đặt câu hỏi gì không?
+            </div>
+        </div>
+
+        <div id="typing-indicator" class="typing">AI đang phân tích dữ liệu và trả lời...</div>
+
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Nhập câu hỏi của bạn tại đây..." autocomplete="off">
+            <button id="sendBtn">Gửi</button>
+        </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
+    <script type="module">
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlKey = urlParams.get('key');
+
+        if (urlKey) {
+            localStorage.setItem('GEMINI_API_KEY', urlKey);
+        }
+
+        import { GoogleGenerativeAI } from '@google/generative-ai';
+
+        let genAI = null;
+        const uploadResult = {
+            file: {
+                mimeType: 'text/plain',
+                uri: 'https://generativelanguage.googleapis.com/v1beta/files/327vugiiq9tl',
+            },
+        };
+
+        const modal = document.getElementById('api-modal');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const saveKeyBtn = document.getElementById('saveKeyBtn');
+        const clearKeyBtn = document.getElementById('clearKeyBtn');
+        const chatWindow = document.getElementById('chat-window');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        function initAI(key) {
+            genAI = new GoogleGenerativeAI(key);
+            modal.style.display = 'none';
+        }
+
+        const savedKey = localStorage.getItem('GEMINI_API_KEY');
+        if (savedKey) {
+            initAI(savedKey);
+        }
+
+        saveKeyBtn.addEventListener('click', () => {
+            const key = apiKeyInput.value.trim();
+            if (key) {
+                localStorage.setItem('GEMINI_API_KEY', key);
+                initAI(key);
+            } else {
+                alert("Vui lòng nhập mã API Key hợp lệ.");
+            }
+        });
+
+        clearKeyBtn.addEventListener('click', () => {
+            if (confirm("Bạn có muốn xóa API Key hiện tại và cấu hình lại không?")) {
+                localStorage.removeItem('GEMINI_API_KEY');
+                location.reload();
+            }
+        });
+
+        function appendMessage(role, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${role}`;
+            msgDiv.innerHTML = role === 'ai' ? marked.parse(text) : text;
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        async function handleChat() {
+            const question = userInput.value.trim();
+            if (!question || !genAI) return;
+
+            appendMessage('user', question);
+            userInput.value = '';
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+            typingIndicator.style.display = 'block';
+
+            try {
+                const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' });
+                const result = await model.generateContent([
+                    { fileData: { mimeType: uploadResult.file.mimeType, fileUri: uploadResult.file.uri } },
+                    { text: question },
+                ]);
+
+                appendMessage('ai', await result.response.text());
+            } catch (error) {
+                appendMessage('ai', "❌ **Lỗi:** " + (error.message.includes('API key') ? "API Key không hợp lệ hoặc đã hết hạn." : "Không thể kết nối với AI. Vui lòng thử lại sau."));
+            } finally {
+                typingIndicator.style.display = 'none';
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                userInput.focus();
+            }
+        }
+
+        sendBtn.addEventListener('click', handleChat);
+        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChat(); });
+    </script>
+</body>
+
+</html>

@@ -24,11 +24,18 @@ function openLessons() {
 // Hàm mở Trợ lý AI
 function openAIAssistant() {
   // Có thể tạo trang AI assistant sau hoặc hiển thị modal
-  alert("Chức năng Trợ lý AI đang được phát triển. Vui lòng quay lại sau!");
-  // window.location.href = "ai-assistant.html";
+  window.location.href = "ai-assistant.html";
 }
 
 // Hàm mở Trắc nghiệm
 function openQuiz() {
   window.location.href = "cauhoi_tracnghiem.html";
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+const urlKey = urlParams.get('key');
+
+if (urlKey) {
+    localStorage.setItem('GEMINI_API_KEY', urlKey);
+}
+
