@@ -49,6 +49,7 @@ body {
 
 .card button {
   padding: 32px 16px;
+  font-size: 24px;
 }
 
 /* ====== NÚT BẤM ====== */
@@ -91,17 +92,18 @@ button:hover {
 #ideaBox h3 {
   color: #b40000;
   margin-bottom: 5px;
+  font-size: 24px;
 }
 
 #ideaBox h4 {
   margin-top: 12px;
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 20px;
   color: #222;
 }
 
 #ideaBox p {
-  font-size: 13px;
+  font-size: 20px;
   line-height: 1.6;
   color: #333;
 }
