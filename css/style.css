@@ -137,7 +137,6 @@ body::before {
   z-index: 2;
 }
 
-
 .logo-top img {
   width: 24rem;
   height: auto;
@@ -153,8 +152,16 @@ body::before {
     width: 10rem;
   }
 
+  .subtitle {
+    top: 16rem !important;
+  }
+
   .logo-top {
     margin-top: -8rem;
+  }
+
+  .card {
+    margin-top: 30rem;
   }
 }
 
@@ -376,4 +383,14 @@ body::before {
   text-decoration: none;
   color: inherit;
   display: block;
+}
+
+.subtitle {
+  position: absolute;
+  top: 36rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
 }
